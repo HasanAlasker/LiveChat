@@ -14,7 +14,7 @@ const messageSchema = new mongoose.Schema(
     content: {
       type: String,
       minLength: [1, "Message must be at least 2 characters long"],
-      maxLenght: [500, "Message must be at least 2 characters long"],
+      maxLength : [500, "Message must be at most 500 characters long"],
       required: true,
     },
     isSeen: {

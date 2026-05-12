@@ -3,9 +3,22 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
 import users from "./routes/users.js";
+import { createServer } from "http";
+import { Server } from "socket.io";
+import initSocket from "./socket.js";
 
 dotenv.config();
 const app = express();
+const httpServer = createServer(app);
+
+const io = new Server(httpServer, {
+  cors: {
+    origin:
+      process.env.NODE_ENV === "production"
+        ? ["https://.netlify.app"]
+        : "http://localhost:5173",
+  },
+});
 
 app.set("trust proxy", 1);
 app.use(
@@ -32,10 +45,10 @@ mongoose
   );
 
 app.use(express.json());
-
 app.use("/api/users", users);
+initSocket(io)
 
-app.listen(port, () => {
+httpServer.listen(port, () => {
   console.log(`Server running on ${port} 🌍`);
-  console.log(`Accessible at http://YOUR_IP:${port} 🖥️`);
+  console.log(`Accessible at http://localhost:${port} 🖥️`);
 });

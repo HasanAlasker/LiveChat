@@ -18,6 +18,7 @@ const io = new Server(httpServer, {
         ? ["https://.netlify.app"]
         : "http://localhost:5173",
   },
+  connectionStateRecovery: {},
 });
 
 app.set("trust proxy", 1);
@@ -46,7 +47,7 @@ mongoose
 
 app.use(express.json());
 app.use("/api/users", users);
-initSocket(io)
+initSocket(io);
 
 httpServer.listen(port, () => {
   console.log(`Server running on ${port} 🌍`);

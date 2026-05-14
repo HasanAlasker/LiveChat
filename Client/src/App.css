@@ -20,6 +20,9 @@ html {
 .main {
   color: var(--black);
 }
+.secText {
+  color: var(--darkGray);
+}
 .pri {
   color: var(--pri);
 }
@@ -87,6 +90,30 @@ a {
   justify-content: flex-start;
 }
 
+/* -------------------- CHAT AREA ---------------------- */
+
+.animationArea {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.chatArea {
+  flex: 1;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.messageArea {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 /* -------------------- USER ---------------------- */
 
 .userCard {
@@ -95,7 +122,7 @@ a {
   gap: 0.6rem;
   padding: 0.5rem 0;
   cursor: pointer;
-  border-top: solid 1px var(--outline);
+  /* border-top: solid 1px var(--outline); */
 }
 .userName {
   font-weight: 400;

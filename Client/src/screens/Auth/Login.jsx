@@ -4,6 +4,7 @@ import AppForm from "../../components/form/AppForm";
 import * as Yup from "yup";
 import { Form, validateYupSchema } from "formik";
 import Screen from "../../components/Screen";
+import { login } from "../../api/user";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -22,6 +23,9 @@ export default function Login() {
   };
   const handelSubmit = async (values) => {
     console.log(values);
+    try {
+      const res = await login(values);
+    } catch (error) {}
   };
 
   return (

@@ -51,10 +51,11 @@ router.post(
 
       await newUser.save();
 
-      return res
-        .status(201)
-        .header("x-auth-token", token)
-        .json({ success: true, message: "User created successfully" });
+      return res.status(201).header("x-auth-token", token).json({
+        success: true,
+        message: "User created successfully",
+        data: newUser,
+      });
     } catch (error) {
       console.error(error);
       return res.status(500).json({
@@ -87,7 +88,11 @@ router.post("/login", validate(userLoginSchema), async (req, res) => {
     return res
       .status(201)
       .header("x-auth-token", token)
-      .json({ success: true, message: "User logged in successfully" });
+      .json({
+        success: true,
+        message: "User logged in successfully",
+        data: user,
+      });
   } catch (error) {
     console.error(error);
     return res.status(500).json({

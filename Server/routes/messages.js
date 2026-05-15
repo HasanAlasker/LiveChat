@@ -5,12 +5,15 @@ import MessageModel from "../models/message.js";
 const router = express.Router();
 
 // get my messages with a user
-router.get("/id", auth, async (req, res) => {
+router.get("/:id", auth, async (req, res) => {
   try {
     const myId = req.user._id;
     const userId = req.params.id;
 
-    const messages = MessageModel.find({ sender: myId, reciever: userId });
+    const messages = await MessageModel.find({
+      sender: myId,
+      reciever: userId,
+    });
     return res.status(200).json({ success: true, data: messages });
   } catch (error) {
     console.error(error);

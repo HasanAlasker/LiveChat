@@ -12,7 +12,7 @@ export default function initSocket(io) {
     socket.on("send message", async ({ senderId, recipientId, msg }) => {
       const recipientSocketId = onlineUsers.get(recipientId);
 
-      if (recipientId) {
+      if (recipientSocketId) {
         socket.to(recipientSocketId).emit("receive message", { senderId, msg });
       }
 
@@ -23,7 +23,7 @@ export default function initSocket(io) {
           content: msg,
         });
         await newMessage.save();
-        
+
       } catch (error) {
         console.log("Failed to save message:", error);
       }

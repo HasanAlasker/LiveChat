@@ -7,15 +7,15 @@ export default function MessageInput({
   placeholder = "Type a message",
   icon,
   type,
-  onClick,
+  onSend,
   receiverId,
 }) {
-  const sendMessage = useSocketStore((state) => state.sendMessage);
-
-  const [msg, setMsg] = useState(null);
+  const [msg, setMsg] = useState("");
 
   const sendMsg = () => {
-    if (msg?.length > 0) sendMessage(receiverId, msg);
+    if (!msg || msg?.trim.length < 0) return;
+    onSend(receiverId, msg);
+    setMsg("");
   };
 
   return (
@@ -25,6 +25,7 @@ export default function MessageInput({
         <input
           placeholder={placeholder}
           name={name}
+          value={msg}
           type={type ?? "text"}
           className={`input`}
           onChange={(e) => setMsg(e.target.value)}

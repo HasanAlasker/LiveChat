@@ -1,17 +1,13 @@
-import React from "react";
-import { Player } from "@lottiefiles/react-lottie-player";
-import animation from "../assets/animations/chat.json";
+import { useState, useEffect } from "react";
 import UserCard from "./UserCard";
 import MessageInput from "./MessageInput";
 import useApi from "../hooks/useApi";
 import { getMsgs } from "../api/message";
-import { useEffect } from "react";
-import { useState } from "react";
 import MessageArea from "./MessageArea";
+import NoChatSelected from "./emptyStates/NoChatSelected";
 
 export default function ChatArea({ activeChat }) {
   const [msgs, setMsgs] = useState([]);
-
   const { data: fetchedMsgs, request: fetchMsgs, loading } = useApi(getMsgs);
 
   useEffect(() => {
@@ -26,20 +22,7 @@ export default function ChatArea({ activeChat }) {
     console.log(fetchedMsgs);
   }, [fetchedMsgs]);
 
-  if (!activeChat)
-    return (
-      <div className="animationArea">
-        <Player
-          src={animation}
-          loop
-          autoplay
-          speed={0.4}
-          style={{ width: "50%", maxWidth: "45rem" }}
-        />
-        <br />
-        <p className="secText">Click on a user to start chatting</p>
-      </div>
-    );
+  if (!activeChat) return <NoChatSelected />;
 
   return (
     <div className="chatArea">

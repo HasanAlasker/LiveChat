@@ -12,11 +12,11 @@ export default function SimpleChat() {
   // const [send, setSend] = useState(null);
   const [rec, setRec] = useState([]);
 
-  useEffect(() => {
-    socket.on("connection", () => {
-      setId(socket.id);
-    });
-  }, []);
+  // useEffect(() => {
+  //   socket.on("connection", () => {
+  //     setId(socket.id);
+  //   });
+  // }, []);
 
   useEffect(() => {
     socket.on("receive message", (msg) => setRec((prev) => [...prev, msg]));

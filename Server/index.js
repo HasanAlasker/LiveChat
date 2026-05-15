@@ -27,7 +27,7 @@ app.use(
   cors({
     origin:
       process.env.NODE_ENV === "production"
-        ? ["https://.netlify.app"]
+        ? ["https://hadithny.netlify.app"]
         : "http://localhost:5173",
     exposedHeaders: ["x-auth-token"],
   }),

@@ -12,23 +12,24 @@ dotenv.config();
 const app = express();
 const httpServer = createServer(app);
 
+const allowedOrigins = [
+  "https://hadithny.netlify.app",
+  "http://localhost:5173",
+];
+app.set("trust proxy", 1);
+
 const io = new Server(httpServer, {
   cors: {
-    origin:
-      process.env.NODE_ENV === "production"
-        ? ["https://.netlify.app"]
-        : "http://localhost:5173",
+    origin: allowedOrigins,
+    credentials: true,
   },
   connectionStateRecovery: {},
 });
 
-app.set("trust proxy", 1);
 app.use(
   cors({
-    origin:
-      process.env.NODE_ENV === "production"
-        ? ["https://hadithny.netlify.app"]
-        : "http://localhost:5173",
+    origin: allowedOrigins,
+    credentials: true,
     exposedHeaders: ["x-auth-token"],
   }),
 );

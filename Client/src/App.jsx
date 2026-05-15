@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import SimpleChat from "./screens/SimpleChat";
+// import SimpleChat from "./screens/SimpleChat";
 import Login from "./screens/Auth/Login";
 import Register from "./screens/Auth/Register";
 import AuthRoute from "./components/auth/AuthRoute";
@@ -14,7 +14,6 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route element={<AuthRoute />}>
           <Route path="/" element={<Chat />} />
-          <Route path="/s" element={<SimpleChat />} />
         </Route>
       </Routes>
     </BrowserRouter>

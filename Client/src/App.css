@@ -120,6 +120,8 @@ a {
 .messageArea {
   overflow-y: scroll;
   scrollbar-width: thin;
+  display: flex;
+  flex-direction: column;
 }
 .msgCont {
   background-color: var(--white);
@@ -131,11 +133,15 @@ a {
   color: var(--black);
   gap: 1rem;
   font-weight: 500;
+  border-radius: 1rem 1rem 1rem 0;
+  max-width: 70%;
 }
 .myMsg {
   background-color: var(--pri);
   justify-self: end;
+  align-self: flex-end;
   color: var(--white);
+  border-radius: 1rem 1rem 0 1rem;
 }
 .msgText {
   font-size: clamp(1.2rem, 2vw, 1.7rem);

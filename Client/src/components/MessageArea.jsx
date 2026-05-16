@@ -1,7 +1,7 @@
 import React from "react";
 import Message from "./Message";
 
-export default function MessageArea({ msgs }) {
+export default function MessageArea({ msgs, bottomRef }) {
   const thereAreMsgs = msgs.length > 0;
 
   const RenderMsgs = thereAreMsgs ? (
@@ -24,6 +24,7 @@ export default function MessageArea({ msgs }) {
   return (
     <div className={thereAreMsgs ? "messageArea" : "emptyMsgArea"}>
       {RenderMsgs}
+      <div ref={bottomRef} />
     </div>
   );
 }

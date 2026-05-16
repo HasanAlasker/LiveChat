@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import UserCard from "./UserCard";
 import MessageInput from "./MessageInput";
 import useApi from "../hooks/useApi";
@@ -10,6 +10,8 @@ import { useAuthStore } from "../store/useAuthStore";
 
 export default function ChatArea({ activeChat }) {
   const [msgs, setMsgs] = useState([]);
+  const bottomRef = useRef(null);
+
   const { user } = useAuthStore();
   const { data: fetchedMsgs, request: fetchMsgs, loading } = useApi(getMsgs);
   const sendMessage = useSocketStore((state) => state.sendMessage);
@@ -24,6 +26,10 @@ export default function ChatArea({ activeChat }) {
   useEffect(() => {
     setMsgs(fetchedMsgs);
   }, [fetchedMsgs]);
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [msgs]);
 
   const sendMsg = async (receiverId, msg) => {
     sendMessage(receiverId, msg);
@@ -50,7 +56,7 @@ export default function ChatArea({ activeChat }) {
   return (
     <div className="chatArea">
       <UserCard user={activeChat} activeChat />
-      <MessageArea msgs={msgs} />
+      <MessageArea msgs={msgs} bottomRef={bottomRef} />
       <MessageInput receiverId={activeChat?._id} onSend={sendMsg} />
     </div>
   );

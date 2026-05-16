@@ -13,8 +13,7 @@ export default function Message({
   createdAt,
   isSeen,
 }) {
-    console.log(id)
-  const { user } = useAuthStore();
+  const { user } =  useAuthStore();
   const myMsg = user._id === sender;
 
   return (

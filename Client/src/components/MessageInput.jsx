@@ -20,7 +20,7 @@ export default function MessageInput({
 
   return (
     <div className="inputGroup">
-      <div className={`inputField`}>
+      <div className={`inputField sendInput`}>
         {icon && <DynamicIcon name={icon} size={22} className="inputIcon" />}
         <input
           placeholder={placeholder}

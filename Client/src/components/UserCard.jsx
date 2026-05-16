@@ -9,11 +9,12 @@ export default function UserCard({
   activeChat,
   showBack,
   closeChat,
+  style,
 }) {
   const firstLetters = user.name.slice(0, 2).toUpperCase();
 
   return (
-    <div className="userCard" onClick={() => setChat(user)}>
+    <div className="userCard" style={style} onClick={() => setChat(user)}>
       <div style={{ display: "flex", alignItems: "center", gap: ".5rem" }}>
         <div
           className="avatar"

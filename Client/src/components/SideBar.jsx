@@ -13,7 +13,7 @@ export default function SideBar({ users, setChat }) {
           <hr
             style={{
               border: 0,
-              borderTop: "2px solid white",
+              borderTop: "2px solid #eeee",
             }}
           />
           <UserCard id={u._id} user={u} setChat={setChat} />

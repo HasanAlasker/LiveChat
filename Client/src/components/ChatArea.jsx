@@ -61,6 +61,7 @@ export default function ChatArea({ activeChat, setChat, windowWidth }) {
         activeChat
         showBack={activeChat}
         closeChat={() => setChat(null)}
+        style={{ backgroundColor: "white" , padding: '1rem', borderRadius: '3rem'}}
       />
       <MessageArea msgs={msgs} bottomRef={bottomRef} />
       <MessageInput receiverId={activeChat?._id} onSend={sendMsg} />

@@ -5,13 +5,14 @@
 }
 :root {
   --pri: #25d366;
-  --avatar: #c8c8c8;
-  --outline: #d0d0d0;
+  --msg: #25d365e1;
+  --avatar: #25d365e1;
+  --outline: #eaeaea;
   --black: black;
   --darkGray: rgb(100, 100, 100);
   --red: rgb(227, 43, 43);
   --background: rgb(246, 246, 246);
-  --menu: rgb(242, 242, 242);
+  --menu: #ffffff;
   --white: rgb(255, 255, 255);
 }
 html {
@@ -112,6 +113,22 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
+  gap: 1rem;
+}
+.chatArea::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url(./assets/pics/pattern.webp);
+  opacity: 0.2;
+  z-index: 0;
+}
+
+/* 👇 keep content above the pseudo-element */
+.chatArea > * {
+  position: relative;
+  z-index: 1;
 }
 .emptyMsgArea {
   flex: 1;
@@ -127,6 +144,13 @@ a {
   display: flex;
   flex: 1;
   flex-direction: column;
+  position: relative;
+}
+.backgroundImg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.5;
 }
 .msgCont {
   background-color: var(--white);
@@ -140,9 +164,10 @@ a {
   font-weight: 500;
   border-radius: 1rem 1rem 1rem 0;
   max-width: 70%;
+  border: 1px solid var(--outline);
 }
 .myMsg {
-  background-color: var(--pri);
+  background-color: var(--msg);
   justify-self: end;
   align-self: flex-end;
   color: var(--white);
@@ -199,6 +224,15 @@ a {
   display: flex;
   align-items: center;
   border: solid var(--outline) 2px;
+  background-color: var(--background);
+  border-radius: 0.5rem;
+  padding: 0.6rem 0.7rem;
+  gap: 0.5rem;
+}
+.sendInput {
+  display: flex;
+  align-items: center;
+  border: solid var(--outline) 2px;
   border-radius: 0.5rem;
   padding: 0.2rem 0.5rem;
   gap: 0.5rem;
@@ -211,6 +245,7 @@ a {
   flex-shrink: 1;
   background-color: var(--background);
 }
+
 .inputErr {
   border: 2px solid var(--red);
 }
@@ -250,7 +285,7 @@ Form {
   .sidebar {
     display: flex;
   }
-  .inputField {
+  .sendInput {
     display: flex;
     align-items: center;
     border: solid var(--outline) 2px;
@@ -265,8 +300,5 @@ Form {
     padding: 1rem;
     margin: 0.5rem;
     gap: 1rem;
-  }
-  .messageArea {
-    scrollbar-width: thin;
   }
 }

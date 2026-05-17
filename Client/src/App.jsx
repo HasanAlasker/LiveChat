@@ -5,8 +5,11 @@ import Login from "./screens/Auth/Login";
 import Register from "./screens/Auth/Register";
 import AuthRoute from "./components/auth/AuthRoute";
 import Chat from "./screens/Chat";
+import { useAuthStore } from "./store/useAuthStore";
 
 function App() {
+  const loadUser = useAuthStore((state) => state.loadUser);
+
   return (
     <BrowserRouter>
       <Routes>
